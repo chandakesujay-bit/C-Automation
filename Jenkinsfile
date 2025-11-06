@@ -5,7 +5,6 @@ pipeline {
         stage('Checkout') {
             steps {
                 echo 'Cloning GitHub repository...'
-                git 'https://github.com/chandakasujay-bit/C-Automation.git'
             }
         }
 
