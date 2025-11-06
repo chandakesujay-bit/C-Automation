@@ -1,20 +1,35 @@
 pipeline {
     agent any
+
     stages {
         stage('Checkout') {
-            steps { git 'https://github.com/<your-username>/c-automation-demo.git'i  }
+            steps {
+                echo 'Cloning GitHub repository...'
+                git 'https://github.com/chandakasujay-bit/C-Automation.git'
+            }
         }
+
         stage('Build') {
-            steps { sh 'gcc -o app main.c' }
+            steps {
+                echo 'Compiling the C program...'
+                sh 'gcc -o app example.c'
+            }
         }
+
         stage('Run') {
-            steps { sh './app' }
+            steps {
+                echo 'Running the compiled program...'
+                sh './app'
+            }
         }
     }
+
     post {
-        success { echo '✅ C build completed successfully!' }
-        failure { echo '❌ Build failed!' }
+        success {
+            echo '✅ Build and run completed successfully!'
+        }
+        failure {
+            echo '❌ Build or run failed!'
+        }
     }
 }
-~
-
